@@ -3,6 +3,8 @@
 import { jsx, css } from "@emotion/core";
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
+import UIfx from "uifx";
+import airhorn from "./my-sounds/airhorn.mp3";
 
 const timerStyle = css`
   text-align: center;
@@ -66,6 +68,8 @@ const Timer = () => {
     setActive(false);
   };
 
+  const alarm = new UIfx(airhorn);
+
   const tick = () => {
     let secondsInterval = null;
     if (isActive) {
@@ -79,6 +83,7 @@ const Timer = () => {
     if (seconds === 60 && isActive) {
       setOpen(true);
       setSeconds(0);
+      alarm.play();
     }
   };
 
